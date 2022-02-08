@@ -63,14 +63,12 @@ UChicago ARKs follow this pattern:
 ark:61001/b2.reedeedeedk
 
 In the above string-
-    "ark:" is the ARK label,
-    "61001" is the Name Assigning Authority Number (NAAN)
-    "b2" is a shoulder- literal characters we want each ARK to start with.
-    "r" means that we generate ARKs randomly. 
-    "e" is an extended digit. (see https://metacpan.org/dist/Noid/view/noid#NOID-CHECK-DIGIT-ALGORITHM)
-    "d" is a digit.
-    "k" is a check digit. 
+- "ark:" is the ARK label,
+- "61001" is the Name Assigning Authority Number (NAAN)
+- "b2" is a shoulder- literal characters we want each ARK to start with.
+- "r" means that we generate ARKs randomly. 
+- "e" is an extended digit. (see https://metacpan.org/dist/Noid/view/noid#NOID-CHECK-DIGIT-ALGORITHM)
+- "d" is a digit.
+- "k" is a check digit. 
 
-Please confirm: is this the correct way to express an ARK format string? 
-
-See the nog command line tool's help message for more info. 
+Please confirm: is this the correct way to express an ARK format string?  
