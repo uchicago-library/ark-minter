@@ -1,13 +1,8 @@
 # A RESTful API to Mint and Validate ARKs
 
-This API generate ARKs stateless, pseudo-random ARK identifiers- although the
+This API generate stateless, pseudo-random ARK identifiers- although the
 identifiers generated should should fill the identifier space evenly, the tool
-will produce the same "first ARK" each time it is run.  The API accepts a
-formatting string that describes how ARKs should be constructed, and it can
-accept an ARK as an optional parameter to return the next or previous ARK based
-on what was passed to it. It can also validate ARKs produced by other sources.
-
-This system creates and validates ARK identifiers only.
+will produce the same "first ARK" each time it is run.
 
 # API
 
