@@ -16,9 +16,9 @@ template : a template string for this ARK, e.g. ark:61001/b2.reedeedeedk
 
 ### Optional Parameters
 
-arkid-after : return the ARKid after this one.
-arkid-before : return the ARKid before this one.
-n : number of ARKs to return.
+- arkid-after : return the ARKid after this one.
+- arkid-before : return the ARKid before this one.
+- n : number of ARKs to return.
 
 ### Response
 
@@ -39,8 +39,8 @@ n : number of ARKs to return.
 
 ### Required Parameters
 
-arkid : an ARK identifier (repeatable)
-template : a template string for this ARK, e.g. ark:61001/b2.reedeedeedk
+- arkid : an ARK identifier (repeatable)
+- template : a template string for this ARK, e.g. ark:61001/b2.reedeedeedk
 
 ### Response
 
