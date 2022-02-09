@@ -15,16 +15,16 @@ class ARKManager():
            position 1. Sum the products. Then do modulo 29 to get the check digit
            in extended characters."""
 
-        assert identifier.startswith('ark:')
+        m = re.search('ark:[/]?([0-9]{5}/[0-9a-z]+)', identifier)
+        short_identifier = m.group(1)
 
-        short_identifier = identifier.replace('ark:', '').replace('/', '')
-        s = 0
-        p = 1
+        i = 0
+        pos = 1
         for c in short_identifier:
             if self.extended_digits.find(c) > -1:
-                s += (self.extended_digits.find(c) * p)
-            p += 1
-        return self.extended_digits[s % len(self.extended_digits)]
+                i += (self.extended_digits.find(c) * pos)
+            pos += 1
+        return self.extended_digits[i % len(self.extended_digits)]
 
     def test_noid_check_digit(self, identifier):
         return self.generate_check_digit(identifier[:-1]) == identifier[-1:]
