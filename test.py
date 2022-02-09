@@ -2,6 +2,7 @@ import json, unittest, urllib.parse, urllib.request
 
 class TestArkValidator(unittest.TestCase):
     def test_valid_arks(self):
+        # John Kunze verified that these ARKs are valid independently on Feb 9, 2022.
         for ark in [
             'ark:61001/b2pf6550897w',
             'ark:61001/b28f3v417d34',
