@@ -1,7 +1,21 @@
 import json, unittest, urllib.parse, urllib.request
+from ark_minter import ARKMinter
 
-class TestArkValidator(unittest.TestCase):
-    def test_valid_arks(self):
+class TestArkMinter(unittest.TestCase):
+    def test_extended_digits(self):
+        minter = ARKMinter()
+
+        self.assertEqual(len(minter.extended_digits), 29)
+        for c in ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'):
+            self.assertTrue(c in minter.extended_digits)
+        for c in ('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'):
+            self.assertTrue(c in minter.extended_digits)
+        for c in ('a', 'e', 'i', 'l', 'o', 'u', 'y'):
+            self.assertFalse(c in minter.extended_digits)
+        
+    def test_check_digit(self):
+        minter = ARKMinter()
+
         # John Kunze verified that these ARKs are valid independently on Feb 9, 2022.
         for ark in [
             'ark:61001/b2pf6550897w',
@@ -105,14 +119,7 @@ class TestArkValidator(unittest.TestCase):
             'ark:61001/b2tq48f87p56',
             'ark:61001/b2r28j64dh3f'
         ]:
-            u = 'http://127.0.0.1:5000/validate?id={}'.format(
-                urllib.parse.quote_plus(ark)
-            )
-            response = json.loads(
-                urllib.request.urlopen(u).read().decode('utf-8')
-            )
-            self.assertEqual(response[ark], 'valid')
-
+            self.assertTrue(minter.validate(ark))
 
 if __name__ == '__main__':
     unittest.main()
