@@ -1,5 +1,5 @@
 """Usage:
-    ark_minter [-]
+    ark_minter [<ark>]
 """
 
 import random, re, sys
@@ -78,7 +78,10 @@ if __name__ == '__main__':
 
     minter = ARKMinter()
 
-    if args['-']: 
-        print(minter.validate(sys.stdin.read().strip()))
+    if args['<ark>']: 
+        print('{} {}'.format(
+            args['<ark>'],
+            minter.validate(args['<ark>'])
+        ))
     else:
         print(minter.create())
