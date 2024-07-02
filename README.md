@@ -1,64 +1,53 @@
-# A RESTful API to Mint and Validate ARKs
+# A command line tool to mint and validate ARKs
 
-This API generate stateless, pseudo-random ARK identifiers- although the
-identifiers generated should should fill the identifier space evenly, the tool
-will produce the same "first ARK" each time it is run.
+This program generate pseudo-random ARK identifiers.
 
-# API
+# Installation
+
+To install this software locally, set
+up a virtual environment and use pip to install dependencies:
+
+```console
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+```
 
 ## Mint
 
-* Mint : `GET /mint`
+To mint a new identifier:
 
-### Required Parameters
-
-template : a template string for this ARK, e.g. ark:61001/b2.reedeedeedk
-
-### Optional Parameters
-
-- arkid-after : return the ARKid after this one.
-- arkid-before : return the ARKid before this one.
-- n : number of ARKs to return.
-
-### Response
-
-```
-{
-    "status": "OK",
-    "arks": [
-        <arkid>,
-        ...
-    ]
-}
+```console
+python ark_minter.py
 ```
 
+Please note that this program does not check for collisions.
+You should confirm that there were no collisions before 
+publishing these ARKs. This program also does not store ARKs in
+any database, so please be sure to do that separately. 
 
-## Validate
+## Validation
 
-* Validate : `GET /validate`
+To validate an existing ARK:
 
-### Required Parameters
-
-- arkid : an ARK identifier (repeatable)
-- template : a template string for this ARK, e.g. ark:61001/b2.reedeedeedk
-
-### Response
-
-```
-{
-    "status": "OK",
-    "valid": [
-        <arkid>
-    ],
-    "invalid": [
-        <arkid>
-    ],
-}
+```console
+python ark_minter.py ark:61001/b2db20724g7b
 ```
 
-## Templates
+The validator will report True or False for the given ARK. 
 
-UChicago ARKs follow this pattern:
+## Testing this code
+
+```console
+python test.py
+```
+
+A unit test for this program includes a set of ARKs that John Kunze 
+verified independently on February 9, 2022. 
+
+## About UChicago Library ARKs
+
+UChicago Library ARKs follow this pattern:
 
 ark:61001/b2.reedeedeedk
 
@@ -69,6 +58,6 @@ In the above string-
 - "r" means that we generate ARKs randomly. 
 - "e" is an extended digit. (see https://metacpan.org/dist/Noid/view/noid#NOID-CHECK-DIGIT-ALGORITHM)
 - "d" is a digit.
-- "k" is a check digit. 
+- "k" is a check digit.
 
-Please confirm: is this the correct way to express an ARK format string?  
+For more information on NOIDs, see https://metacpan.org/dist/Noid. 
